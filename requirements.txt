@@ -1,0 +1,9 @@
+streamlit
+pandas
+folium
+streamlit_folium
+geopandas
+
+graphviz
+streamlit-d3graph
+scikit-learn

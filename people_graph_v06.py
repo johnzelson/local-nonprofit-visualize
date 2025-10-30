@@ -252,7 +252,7 @@ def orgs_to_people(df, charge, width, height):
     adjmat = vec2adjmat(source, target, weight=weight)
 
     # Initialize
-    d3 = d3graph()
+    d3 = d3graph.d3graph()
 
     # Build force-directed graph with default settings
     d3.graph(adjmat)
@@ -290,8 +290,24 @@ def orgs_to_people(df, charge, width, height):
         d3.node_properties[person_id]['size']=10
         d3.node_properties[person_id]['fontcolor']='black'
 
-    d3.show(figsize=[width, height], show_slider=False)
-    
+    #d3.show(figsize=[width, height], show_slider=False)
+        # Create a temporary file to hold the HTML
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".html") as tmp_file:
+        tmp_filepath = tmp_file.name
+
+    d3.show(filepath=tmp_filepath)
+
+
+    # Read the content of the temporary file
+    with open(tmp_filepath, 'r') as f:
+        html_content = f.read()
+
+    # Clean up the temporary file
+    #os.remove(filepath)
+
+    # Display the HTML content in Streamlit
+    components.html(html_content, height=600, scrolling=True)
+
 
 def orgs_to_emphasis(df, charge, width, height):
     
@@ -312,7 +328,7 @@ def orgs_to_emphasis(df, charge, width, height):
     adjmat = vec2adjmat(source, target, weight=weight)
 
     # Initialize
-    d3 = d3graph()
+    d3 = d3graph.d3graph()
 
     # Build force-directed graph with default settings
     d3.graph(adjmat)
@@ -351,7 +367,23 @@ def orgs_to_emphasis(df, charge, width, height):
         d3.node_properties[org_id]['size']=10
         d3.node_properties[org_id]['fontcolor']='black'
 
-    d3.show(figsize=[width, height], show_slider=False)
+    # d3.show(figsize=[width, height], show_slider=False)
+    # Create a temporary file to hold the HTML
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".html") as tmp_file:
+        tmp_filepath = tmp_file.name
+
+    d3.show(filepath=tmp_filepath)
+
+
+    # Read the content of the temporary file
+    with open(tmp_filepath, 'r') as f:
+        html_content = f.read()
+
+    # Clean up the temporary file
+    #os.remove(filepath)
+
+    # Display the HTML content in Streamlit
+    components.html(html_content, height=600, scrolling=True)
 
 
 def people_to_emphasis(df, charge, width, height):
@@ -373,7 +405,7 @@ def people_to_emphasis(df, charge, width, height):
     adjmat = vec2adjmat(source, target, weight=weight)
 
     # Initialize
-    d3 = d3graph()
+    d3 = d3graph.d3graph()
 
     # Build force-directed graph with default settings
     d3.graph(adjmat)
@@ -420,8 +452,24 @@ def people_to_emphasis(df, charge, width, height):
     #    d3.edge_properties[(person_id, ntee_id)]['label']=row['TitleTxt']   
 
     
-    d3.show(figsize=[width, height], show_slider=False)
+    #d3.show(figsize=[width, height], show_slider=False)
     # d3.show(filepath='data/bigbang.html', notebook=False)
+    # Create a temporary file to hold the HTML
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".html") as tmp_file:
+        tmp_filepath = tmp_file.name
+
+    d3.show(filepath=tmp_filepath)
+
+
+    # Read the content of the temporary file
+    with open(tmp_filepath, 'r') as f:
+        html_content = f.read()
+
+    # Clean up the temporary file
+    #os.remove(filepath)
+
+    # Display the HTML content in Streamlit
+    components.html(html_content, height=600, scrolling=True)
 
     
     # st.table(d3.edge_properties)

@@ -174,8 +174,9 @@ def people_with_multiple_connections(df_in, charge, width, height):
     adjmat = vec2adjmat(source, target, weight=weight)
 
     # Initialize
-    d3 = d3graph.d3graph()
+    #d3 = d3graph.d3graph()
     #d3 = d3graph.d3graph(charge=charge)
+    d3 = d3graph()
 
     # Build force-directed graph with default settings
     d3.graph(adjmat)

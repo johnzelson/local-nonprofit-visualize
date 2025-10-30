@@ -212,8 +212,27 @@ def people_with_multiple_connections(df_in, charge, width, height):
         d3.node_properties[person_id]['size']=10
         d3.node_properties[person_id]['fontcolor']='black'
 
-    d3.show(figsize=[width, height], show_slider=False)
+    #d3.show(figsize=[width, height], show_slider=False)
     
+
+    # Create a temporary file to hold the HTML
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".html") as tmp_file:
+        tmp_filepath = tmp_file.name
+
+    d3.show(filepath=tmp_filepath)
+
+
+    # Read the content of the temporary file
+    with open(tmp_filepath, 'r') as f:
+        html_content = f.read()
+
+    # Clean up the temporary file
+    #os.remove(filepath)
+
+    # Display the HTML content in Streamlit
+    components.html(html_content, height=600, scrolling=True)
+
+
 
 
 

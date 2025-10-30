@@ -1,10 +1,13 @@
-streamlit
+#streamlit
+streamlit==1.39.0
+streamlit-d3graph==1.0.3
+
 pandas
 folium
 streamlit_folium
 geopandas
 
 graphviz
-streamlit-d3graph
+#streamlit-d3graph
 d3graph==2.6.1
 scikit-learn

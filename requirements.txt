@@ -6,4 +6,5 @@ geopandas
 
 graphviz
 streamlit-d3graph
+d3graph==2.6.1
 scikit-learn

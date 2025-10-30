@@ -90,7 +90,7 @@ def test_graph(df, charge, width, height):
 
     #d3.show(filepath='data/g1.html')
     #d3.show(figsize=[width, height])
-    d3.show()
+    #d3.show()
 
     html_content = d3.get_graph()
     components.html(html_content, height=800)

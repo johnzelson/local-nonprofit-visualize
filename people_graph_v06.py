@@ -19,6 +19,8 @@ import math
 from datetime import datetime
 import urllib.parse
 
+import tempfile
+
 #import graphviz
 from streamlit_d3graph import d3graph as st_d3graph, vec2adjmat
 
@@ -121,14 +123,16 @@ def test_graph(df, charge, width, height):
     # Generate the HTML file
     
 
-# Create a temporary file to save the graph
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".html") as tmpfile:
-        # Save the graph to the temporary file
-        d3.show(filepath=tmpfile.name)
-        filepath = tmpfile.name
+
+    # Create a temporary file to hold the HTML
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".html") as tmp_file:
+        tmp_filepath = tmp_file.name
+
+    d3.show(filepath=tmp_filepath)
+
 
     # Read the content of the temporary file
-    with open(filepath, 'r') as f:
+    with open(tmp_filepath, 'r') as f:
         html_content = f.read()
 
     # Clean up the temporary file

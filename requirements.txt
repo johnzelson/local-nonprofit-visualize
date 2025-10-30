@@ -1,7 +1,6 @@
 #streamlit
 streamlit==1.39.0
 streamlit-d3graph==1.0.3
-streamlit-components-v1
 
 
 pandas

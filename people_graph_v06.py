@@ -19,9 +19,18 @@ import math
 from datetime import datetime
 import urllib.parse
 
-import graphviz
-from streamlit_d3graph import d3graph, vec2adjmat
+#import graphviz
+from streamlit_d3graph import d3graph as st_d3graph, vec2adjmat
+
+#import streamlit_d3graph as d3graph
+#from streamlit_d3graph import vec2adjmat
+
 #import streamlit_d3graph
+import d3graph 
+
+#from d3graph import d3graph
+#from streamlit_d3graph import d3graph as st_d3graph
+
 
 APP_TITLE = 'Local NPs: Visualize Connections'
 APP_SUB_TITLE = 'Source:  IRS Tax Returns and IRS BMF '
@@ -51,7 +60,7 @@ def test_graph(df, charge, width, height):
     adjmat = vec2adjmat(source, target, weight=weight)
 
     # Initialize
-    d3 = d3graph(charge=charge)
+    d3 = d3graph.d3graph(charge=charge)
 
     # Build force-directed graph with default settings
     d3.graph(adjmat)
@@ -90,14 +99,46 @@ def test_graph(df, charge, width, height):
 
     #d3.show(filepath='data/g1.html')
     #d3.show(figsize=[width, height])
-    #d3.show()
 
-    html_content = d3.get_graph()
-    components.html(html_content, height=800)
+
+    # Use the streamlit-d3graph component to display with specific dimensions
+    #st_d3graph.display(d3)
+
+
+    #html_content = d3.show()
+    #components.html(html_content, height=800)
+
+
+    # Get the HTML content into a variable by setting filepath=None
+    # The show() method returns the HTML content as a string when filepath is None.
+    #html_content = d3.show(filepath=None)
+
+    #html_content = st_d3graph(d3)
+
+    #components.html(html_content, height=800)
     # some changes to how d3 graphs are displayed in streamlit
 
     # Generate the HTML file
-    """
+    
+
+# Create a temporary file to save the graph
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".html") as tmpfile:
+        # Save the graph to the temporary file
+        d3.show(filepath=tmpfile.name)
+        filepath = tmpfile.name
+
+    # Read the content of the temporary file
+    with open(filepath, 'r') as f:
+        html_content = f.read()
+
+    # Clean up the temporary file
+    #os.remove(filepath)
+
+    # Display the HTML content in Streamlit
+    components.html(html_content, height=600, scrolling=True)
+
+
+
     #html_file_path = 'd3graph_output.html'
     #d3.show(filepath=html_file_path, overwrite=True)
 
@@ -108,7 +149,7 @@ def test_graph(df, charge, width, height):
     # Display the HTML in Streamlit
     #st.components.v1.html(html_content, height=600) # Adjust height as needed
     #components.html(html_content, height=600) # Adjust height as needed
-    """
+
 
 
 def people_with_multiple_connections(df_in, charge, width, height):

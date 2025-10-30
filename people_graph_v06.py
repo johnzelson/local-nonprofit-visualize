@@ -37,7 +37,6 @@ def get_people_df():
 # test graph
 def test_graph(df, charge, width, height):
 
-
     source = []
     target =[]
     weight = []
@@ -91,6 +90,20 @@ def test_graph(df, charge, width, height):
 
     #d3.show(filepath='data/g1.html')
     d3.show(figsize=[width, height])
+
+
+    # Generate the HTML file
+    html_file_path = 'd3graph_output.html'
+    d3.show(filepath=html_file_path, overwrite=True)
+
+    # Read the HTML content
+    with open(html_file_path, 'r') as f:
+        html_content = f.read()
+
+    # Display the HTML in Streamlit
+    st.components.v1.html(html_content, height=600) # Adjust height as needed
+
+
 
 
 def people_with_multiple_connections(df_in, charge, width, height):

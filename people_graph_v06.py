@@ -89,7 +89,7 @@ def test_graph(df, charge, width, height):
         d3.node_properties[person_id]['fontcolor']='black'
 
     #d3.show(filepath='data/g1.html')
-    d3.show(figsize=[width, height])
+    #d3.show(figsize=[width, height])
 
 
     # Generate the HTML file
@@ -101,8 +101,8 @@ def test_graph(df, charge, width, height):
         html_content = f.read()
 
     # Display the HTML in Streamlit
-    st.components.v1.html(html_content, height=600) # Adjust height as needed
-
+    #st.components.v1.html(html_content, height=600) # Adjust height as needed
+    components.html(html_content, height=600) # Adjust height as needed
 
 
 

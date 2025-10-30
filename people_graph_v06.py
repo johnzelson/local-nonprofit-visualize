@@ -90,9 +90,12 @@ def test_graph(df, charge, width, height):
 
     #d3.show(filepath='data/g1.html')
     #d3.show(figsize=[width, height])
-
+    d3.show()
+    
+    # some changes to how d3 graphs are displayed in streamlit
 
     # Generate the HTML file
+    """
     html_file_path = 'd3graph_output.html'
     d3.show(filepath=html_file_path, overwrite=True)
 
@@ -103,7 +106,7 @@ def test_graph(df, charge, width, height):
     # Display the HTML in Streamlit
     #st.components.v1.html(html_content, height=600) # Adjust height as needed
     components.html(html_content, height=600) # Adjust height as needed
-
+    """
 
 
 def people_with_multiple_connections(df_in, charge, width, height):

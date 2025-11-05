@@ -1,1 +1,1 @@
-In process: creating new repo for visualizing people and connections to organizations
+Curious to see people associated with the nonprofits in my local area.  After processing a million tax nonprofit tax returns, extracted the names associated with each org (board members and contacts).  This data drives a network graph using Vega in Streamlit for rapid prototyping.  
